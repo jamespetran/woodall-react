@@ -9,6 +9,12 @@ function Spacejams() {
       // let count = 0; <- non react way to do this
       const [count, setCount] = useState(0);
 
+      const [invaders, setInvaders] = useState('👾 👾 👾')
+
+      const [authorInput, setAuthorInput] = useState('');
+
+      const [author, setAuthor] = useState('James');
+
       const onButtonClick = () => {
             console.log('moar jams 🏀');
             //increase the value of count
@@ -19,13 +25,11 @@ function Spacejams() {
 
       };
       
-      const [invaders, setInvaders] = useState('👾 👾 👾')
 
       const addInvader = () => {
             setInvaders(invaders + ' 👾')
       };
 
-      const [authorInput, setAuthorInput] = useState('James');
 
       // const onChangeAuthor = (event) => {
       //       console.log('in onChangeAuthor 🥺', event.target)
@@ -37,17 +41,33 @@ function Spacejams() {
       //       setAuthorInput(newAuthor);
       // };
 
+      const onSubmitAuthor = (event) => {
+            // don't reload the page
+            event.preventDefault();
+            console.log('new author is',authorInput);
+            setAuthor(authorInput);
 
+            // clear the inputs:
+            // jQuery version:
+            // $('input').val('');
+            // react version
+            setAuthorInput('');
+      };
+ 
       return (
             <div>
                   <h2> space jams!! </h2>
-                  <h4> created by {authorInput} </h4>
-                  <input 
-                        type="text"
-                        placeholder="put Author name here"
-                        // all in one line 👇
-                        onChange={(event) => setAuthorInput(event.target.value)}
-                  />
+                  <h4> created by {author} </h4>
+                  <form onSubmit={onSubmitAuthor}>
+                        <input 
+                              type="text"
+                              placeholder="put Author name here"
+                              // all in one line 👇
+                              onChange={(event) => setAuthorInput(event.target.value)}
+                              value = {authorInput}
+                        />
+                        <button>Submit! 🐮</button>
+                  </form>
                   <h4> how many space jams are there?? </h4>
                   <h3> there are {count} space jams to start</h3>
                   <h4> look out, space invaders! {invaders} </h4>
