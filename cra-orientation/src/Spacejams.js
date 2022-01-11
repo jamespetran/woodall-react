@@ -25,19 +25,28 @@ function Spacejams() {
             setInvaders(invaders + ' 👾')
       };
 
-      const onChangeAuthor = () => {
-            console.log('in onChangeAuthor 🥺')
-      };
+      const [authorInput, setAuthorInput] = useState('James');
+
+      // const onChangeAuthor = (event) => {
+      //       console.log('in onChangeAuthor 🥺', event.target)
+
+      //       // in jQuery: 
+      //       // let authorName = $('#authorInput').val();
+      //       let newAuthor = event.target.value;
+      //       console.log('author is', newAuthor)
+      //       setAuthorInput(newAuthor);
+      // };
 
 
       return (
             <div>
                   <h2> space jams!! </h2>
-                  <h4> created by James </h4>
+                  <h4> created by {authorInput} </h4>
                   <input 
                         type="text"
                         placeholder="put Author name here"
-                        onChange={onChangeAuthor}
+                        // all in one line 👇
+                        onChange={(event) => setAuthorInput(event.target.value)}
                   />
                   <h4> how many space jams are there?? </h4>
                   <h3> there are {count} space jams to start</h3>
